@@ -170,7 +170,6 @@
              * internal value is changed.
              */
             newValue(value) {
-                this.$emit('input', value)
                 !this.isValid && this.checkHtml5Validity()
             }
         },
@@ -193,7 +192,9 @@
              * before ui update, helps when using masks (Cleavejs and potentially others).
              */
             onInput(event) {
-                this.$nextTick(() => { this.newValue = event.target.value })
+                const value = event.target.value
+                this.$nextTick(() => { this.newValue = value })
+                this.$emit('input', value)
             }
         }
     }
