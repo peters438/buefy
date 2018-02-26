@@ -88,7 +88,8 @@
                 </header>
 
                 <b-datepicker-table
-                    v-model="dateSelected"
+                    :value="dateSelected"
+                    @input="updateSelectedDate"
                     :day-names="dayNames"
                     :month-names="monthNames"
                     :first-day-of-week="firstDayOfWeek"
@@ -366,13 +367,12 @@
                 const date = this.dateParser(value)
                 if (date && !isNaN(date)) {
                     this.dateSelected = date
-                    this.$emit('input', date)
                 } else {
                     // Force refresh input value when not valid date
                     this.dateSelected = null
-                    this.$emit('input', null)
                     this.$refs.input.newValue = this.dateSelected
                 }
+                this.$emit('input', this.dateSelected)
             },
 
             /*
