@@ -324,7 +324,7 @@
                     month: currentDate.getMonth(),
                     year: currentDate.getFullYear()
                 }
-                this.$emit('input', value)
+
                 if (this.$refs.dropdown) {
                     this.$refs.dropdown.isActive = false
                 }
@@ -371,6 +371,7 @@
                     this.dateSelected = null
                     this.$refs.input.newValue = this.dateSelected
                 }
+                this.$emit('input', value)
             },
 
             /*
@@ -436,6 +437,7 @@
             onChangeNativePicker(event) {
                 const date = event.target.value
                 this.dateSelected = date ? new Date(date) : null
+                this.$emit('input', this.dateSelected)
             }
         }
     }
