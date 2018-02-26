@@ -366,12 +366,13 @@
                 const date = this.dateParser(value)
                 if (date && !isNaN(date)) {
                     this.dateSelected = date
+                    this.$emit('input', date)
                 } else {
                     // Force refresh input value when not valid date
                     this.dateSelected = null
+                    this.$emit('input', null)
                     this.$refs.input.newValue = this.dateSelected
                 }
-                this.$emit('input', value)
             },
 
             /*
@@ -435,9 +436,9 @@
             * Parse date from string
             */
             onChangeNativePicker(event) {
-                const date = event.target.value
-                this.dateSelected = date ? new Date(date) : null
-                this.$emit('input', this.dateSelected)
+                const date = event.target.value ? new Date(event.target.value) : null
+                this.dateSelected = date
+                this.$emit('input', date)
             }
         }
     }
