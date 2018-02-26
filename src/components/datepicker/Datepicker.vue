@@ -337,7 +337,6 @@
              */
             value(value) {
                 this.dateSelected = value
-
                 !this.isValid && this.$refs.input.checkHtml5Validity()
             },
 
@@ -357,6 +356,7 @@
             */
             updateSelectedDate(date) {
                 this.dateSelected = date
+                this.$emit('input', date)
             },
 
             /*
